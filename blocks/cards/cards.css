@@ -6,3 +6,18 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 17px;
 }
+
+@media screen and (max-width: 893px) {
+  .cards {
+    max-width: 596px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .cards {
+    max-width: 282px;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+  }
+}

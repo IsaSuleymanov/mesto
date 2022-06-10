@@ -10,3 +10,15 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
+@media screen and (max-width: 893px) {
+  .profile__about-me {
+    max-width: 250px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profile__about-me {
+    max-width: 282px;
+  }
+}

@@ -10,3 +10,17 @@
   white-space: nowrap;
   overflow: hidden;
 }
+@media screen and (max-width: 893px) {
+  .profile__name {
+    font-size: 36px;
+    max-width: 250px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profile__name {
+    max-width: 189px;
+    font-size: 27px;
+    line-height: 33px;
+  }
+}
