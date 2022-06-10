@@ -18,6 +18,9 @@
 @media screen and (max-width: 767px) {
   .popup__close-button {
     right: 0;
-    top: -48px;
+    background-image: url(../../../images/close_icon_size_s.svg);
+    top: -36px;
+    width: 20px;
+    height: 20px;
   }
 }

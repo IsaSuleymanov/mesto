@@ -1,5 +1,6 @@
 .popup__profile-info {
-  min-width: 358px;
+  max-width: 358px;
+  width: 100%;
   margin-bottom: 30px;
   font-style: normal;
   font-weight: 400;
@@ -11,8 +12,8 @@
 }
 
 @media screen and (max-width: 767px) {
-  .popup__profile-name {
-    min-width: 238px;
+  .popup__profile-info {
+    max-width: 238px;
     font-size: 14px;
     line-height: 17px;
   }
