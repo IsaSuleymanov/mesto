@@ -11,15 +11,15 @@
 </head>
 
 <body class="page">
-	<section class="header">
+	<header class="header">
 		<img class="header__logo" src="./images/logo.svg" alt="Логотип">
-	</section>
+	</header>
 	<section class="profile">
 		<div class="profile__block">
 			<img class="profile__avatar" src="./images/profile__avatar.jpg" alt="Аватар">
 			<div class="profile__info">
-				<h1 class="profile__name">Жак-Ив Кусто<a class="profile__edit-button" href="#"><img
-							src="./images/edit__button.svg" alt="Кнопка - редактировать"></a></h1>
+				<h1 class="profile__name">Жак-Ив Кусто</h1>
+				<a class="profile__edit-button" href="#"><img src="./images/edit__button.svg" alt="Кнопка - редактировать"></a>
 				<p class="profile__about-me">Исследователь океана</p>
 			</div>
 		</div>
@@ -30,7 +30,7 @@
 			<img class="card__image" src="./images/karachaevsk.jpg" alt="Картинка">
 			<div class="card__info">
 				<h2 class="card__title">Карачаевск</h2>
-				<img class="card__like" src="./images/like_disabled.svg" alt="Лайк">
+				<img class="card__like" src="./images/like_disabled.svg">
 			</div>
 		</div>
 		<div class="card">
@@ -69,6 +69,19 @@
 			</div>
 		</div>
 	</div>
+	<footer class="footer">
+		<h3 class="footer__copyright">&#169&nbsp2020&nbspMesto&nbspRussia</h3>
+	</footer>
+	<div class="popup popup__hidden">
+		<form class="popup__content" name="form-profile-edit">
+			<a class="popup__close-button" href="#"><img src="./images/close_icon.svg" alt="Кнопка - закрытие паранжи"></a>
+			<p class="popup__title">Редактировать профиль</p>
+			<input class="popup__profile-name" name="username" type="text" placeholder="Введите имя">
+			<input class="popup__profile-about" name="about" type="text" placeholder="Введите информацию о человеке">
+			<button type="button" class="popup__save-button" value="Сохранить">Сохранить</button>
+		</form>
+	</div>
+	<script src="./pages/index.js"></script>
 </body>
 
 </html>

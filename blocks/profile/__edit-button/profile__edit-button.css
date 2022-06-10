@@ -1,8 +1,11 @@
 .profile__edit-button {
   max-width: 24px;
-  padding-left: 18px;
+  height: 24px;
   margin: 0;
   transition: opacity 1s;
+  display: flex;
+  justify-self: flex-end;
+  align-self: center;
 }
 
 .profile__edit-button:hover {

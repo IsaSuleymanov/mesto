@@ -1,0 +1,12 @@
+.popup__profile-about {
+  min-width: 358px;
+  margin-bottom: 48px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-style: none none solid none;
+}
