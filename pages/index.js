@@ -10,17 +10,17 @@ const popupProfileName = document.querySelector(".popup__profile-name");
 const popupProfileAbout = document.querySelector(".popup__profile-about");
 
 editButton.addEventListener("click", function () {
-  popup.classList.remove("popup__hidden");
+  popup.classList.remove("popup_hidden");
   popupProfileName.value = profileName.textContent;
   popupProfileAbout.value = profileAboutMe.textContent;
 });
 
 popupCloseButton.addEventListener("click", function () {
-  popup.classList.add("popup__hidden");
+  popup.classList.add("popup_hidden");
 });
 
 popupSaveButton.addEventListener("click", function () {
-  popup.classList.add("popup__hidden");
+  popup.classList.add("popup_hidden");
   profileName.textContent = popupProfileName.value;
   profileAboutMe.textContent = popupProfileAbout.value;
 });
