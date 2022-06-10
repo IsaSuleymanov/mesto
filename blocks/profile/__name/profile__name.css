@@ -1,7 +1,6 @@
 .profile__name {
   width: 294px;
   margin: 0;
-  font-family: "Inter";
   font-style: normal;
   font-weight: 500;
   font-size: 42px;
@@ -22,5 +21,6 @@
     max-width: 189px;
     font-size: 27px;
     line-height: 33px;
+    padding-left: 30px;
   }
 }

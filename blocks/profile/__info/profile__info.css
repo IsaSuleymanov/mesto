@@ -10,8 +10,9 @@
 
 @media screen and (max-width: 893px) {
   .profile__info {
-    padding: 33px 0 25px 25px;
+    padding: 38px 0 25px 20px;
     column-gap: 12px;
+    max-width: 310px;
   }
 }
 

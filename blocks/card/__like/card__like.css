@@ -1,5 +1,10 @@
 .card__like {
-  transition: opacity 1s;
+  background: none;
+  border: none;
+  background-image: url(../../../images/like_disabled.svg);
+  width: 22px;
+  height: 19px;
+  transition: opacity 0.5s;
   cursor: pointer;
 }
 
