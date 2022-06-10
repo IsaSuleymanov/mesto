@@ -14,14 +14,17 @@ function formSubmitHandler(evt) {
   popup.classList.add("popup_hidden");
 }
 
-popup.addEventListener("submit", formSubmitHandler);
-
-editButton.addEventListener("click", function () {
+function editButtonClick() {
   popup.classList.remove("popup_hidden");
   popupProfileName.value = profileName.textContent;
   popupProfileAbout.value = profileAboutMe.textContent;
-});
-
-popupCloseButton.addEventListener("click", function () {
+}
+function closeButtonClick() {
   popup.classList.add("popup_hidden");
-});
+}
+
+popup.addEventListener("submit", formSubmitHandler);
+
+editButton.addEventListener("click", editButtonClick);
+
+popupCloseButton.addEventListener("click", closeButtonClick);
