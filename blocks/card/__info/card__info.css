@@ -1,7 +1,6 @@
-.profile {
-  max-width: 880px;
-  margin: 40px auto 0;
+.card__info {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 25px 15px 31px 21px;
 }
