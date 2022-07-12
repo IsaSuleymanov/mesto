@@ -36,29 +36,27 @@
 	<footer class="footer">
 		<h3 class="footer__copyright">&#169;&nbsp;2020&nbsp;Mesto&nbsp;Russia</h3>
 	</footer>
-	<div class="popup popup-profile popup_hidden">
+	<div class="popup popup_type_profile popup_hidden">
 		<form class="popup__content" name="form-profile-edit">
 			<button class="popup__close-button" type="button" name="popup__close-button"
 				aria-label="Закрытие поп-апа"></button>
 			<p class="popup__title">Редактировать профиль</p>
-			<input class="popup__profile-info popup__profile-info_mb_m" name="username" type="text" placeholder="Введите имя">
-			<input class="popup__profile-info popup__profile-info_mb_l" name="about" type="text"
-				placeholder="Введите информацию о человеке">
+			<input class="popup__input" id="username" name="username" type="text" placeholder="Введите имя">
+			<input class="popup__input" id="about" name="about" type="text" placeholder="Введите информацию о человеке">
 			<button type="submit" class="popup__save-button">Сохранить</button>
 		</form>
 	</div>
-	<div class="popup popup-cards popup_hidden">
+	<div class="popup popup_type_cards popup_hidden">
 		<form class="popup__content" name="form-cards-edit">
 			<button class="popup__close-button" type="button" name="popup__close-button"
 				aria-label="Закрытие поп-апа"></button>
 			<p class="popup__title">Новое место</p>
-			<input class="popup__profile-cards popup__profile-cards_mb_m" name="title" type="text" placeholder="Название">
-			<input class="popup__profile-cards popup__profile-cards_mb_l" name="image" type="text"
-				placeholder="Ссылка на картинку">
+			<input class="popup__input" id="title" name="title" type="text" placeholder="Название">
+			<input class="popup__input" id="image" name="image" type="text" placeholder="Ссылка на картинку">
 			<button type="submit" class="popup__save-button">Сохранить</button>
 		</form>
 	</div>
-	<div class="popup popup-open-card popup_hidden">
+	<div class="popup popup_type_image popup_hidden">
 		<div class="popup__image-popup">
 			<img class="popup__image" src="#" alt>
 			<p class="popup__image-title"></p>
@@ -76,6 +74,7 @@
 			</div>
 		</li>
 	</template>
+	<script src="./scripts/initial-cards.js"></script>
 	<script src="./scripts/index.js"></script>
 </body>
 
