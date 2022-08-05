@@ -1,0 +1,17 @@
+.popup-input-error {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff0000;
+  max-width: 358px;
+  margin: 0;
+  padding: 0 0 13px 36px;
+  display: flex;
+  justify-self: flex-start;
+  align-self: flex-start;
+}
+
+.popup-input-error:last-child {
+  padding-bottom: 0;
+}
