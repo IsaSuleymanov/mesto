@@ -7,11 +7,12 @@
   max-width: 358px;
   margin: 0;
   padding: 0 0 13px 36px;
-  display: flex;
+  display: block;
   justify-self: flex-start;
   align-self: flex-start;
+  min-height: 30px;
 }
 
-.popup-input-error:last-child {
+.popup-input-error:last-of-type {
   padding-bottom: 0;
 }
