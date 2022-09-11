@@ -1,6 +1,5 @@
 export default class FormValidator {
   constructor(constants, form) {
-    this._form = constants.form;
     this._input = constants.input;
     this._saveButton = constants.saveButton;
     this._inputError = constants.inputError;
@@ -53,12 +52,7 @@ export default class FormValidator {
     }
   }
 
-  _disableButtonOnStart() {
-    this._saveButtonElement.disabled = true;
-  }
-
   _setEventListeners() {
-    this._disableButtonOnStart();
     this._toggleStateButton();
     this._inputList.forEach((input) => {
       input.addEventListener("input", () => {
@@ -70,9 +64,6 @@ export default class FormValidator {
   }
 
   enableValidation() {
-    this._form.addEventListener("submit", function (evt) {
-      evt.preventDefault();
-    });
     this._setEventListeners();
   }
 }

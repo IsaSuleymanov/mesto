@@ -1,18 +1,9 @@
-import {
-  popupImage,
-  inputImage,
-  inputTitle,
-  imageCloseButton,
-  openPopup,
-  closePopup,
-  closeByClick,
-} from "./index.js";
-
 export default class Card {
-  constructor(name, link, templateSelector) {
+  constructor(name, link, templateSelector, openImagePopup) {
     this._link = link;
     this._title = name;
     this._templateSelector = templateSelector;
+    this._openImagePopup = openImagePopup;
   }
 
   _getTemplate() {
@@ -31,17 +22,7 @@ export default class Card {
 
   _handleDeleteClick() {
     this._card.remove();
-  }
-
-  _handleOpenPopup() {
-    inputImage.src = this._link;
-    inputImage.alt = this._title;
-    inputTitle.textContent = this._title;
-    openPopup(popupImage);
-  }
-
-  _handleClosePopup() {
-    closePopup(popupImage);
+    this._card = null;
   }
 
   _setEventListeners() {
@@ -56,22 +37,17 @@ export default class Card {
       });
 
     this._card.querySelector(".card__image").addEventListener("click", () => {
-      this._handleOpenPopup();
+      this._openImagePopup(this._title, this._link);
     });
-
-    imageCloseButton.addEventListener("click", () => {
-      this._handleClosePopup();
-    });
-
-    popupImage.addEventListener("mousedown", closeByClick);
   }
 
   generateCard() {
     this._card = this._getTemplate();
     this._setEventListeners();
+    this._cardImage = this._card.querySelector(".card__image");
 
-    this._card.querySelector(".card__image").src = this._link;
-    this._card.querySelector(".card__image").alt = this._title;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._title;
     this._card.querySelector(".card__title").textContent = this._title;
 
     return this._card;
