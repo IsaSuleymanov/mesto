@@ -36,20 +36,20 @@ export default class Card {
         this._handleDeleteClick();
       });
 
-    this._card.querySelector(".card__image").addEventListener("click", () => {
+    this._cardImage.addEventListener("click", () => {
       this._openImagePopup(this._title, this._link);
     });
   }
 
   generateCard() {
     this._card = this._getTemplate();
-    this._setEventListeners();
     this._cardImage = this._card.querySelector(".card__image");
 
     this._cardImage.src = this._link;
     this._cardImage.alt = this._title;
     this._card.querySelector(".card__title").textContent = this._title;
 
+    this._setEventListeners();
     return this._card;
   }
 }

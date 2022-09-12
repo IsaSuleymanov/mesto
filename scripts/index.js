@@ -4,8 +4,11 @@ import FormValidator from "./FormValidator.js";
 const popupCards = document.querySelector(".popup_type_cards");
 const cardName = popupCards.querySelector("#title");
 const cardLink = popupCards.querySelector("#image");
-const cardsCloseButton = popupCards.querySelector(".popup__close-button");
 const cardsContainer = document.querySelector(".cards");
+const popupCloseButton = document.querySelector(".popup__close-button");
+popupCloseButton.addEventListener("click", () => {
+  closeByClick(evt);
+});
 
 const editButton = document.querySelector(".profile__edit-button");
 const addButton = document.querySelector(".profile__add-button");
@@ -15,12 +18,10 @@ const profileAboutMe = document.querySelector(".profile__about-me");
 const popupProfile = document.querySelector(".popup_type_profile");
 const inputName = popupProfile.querySelector("#username");
 const inputAbout = popupProfile.querySelector("#about");
-const editCloseButton = popupProfile.querySelector(".popup__close-button");
 
 const popupImage = document.querySelector(".popup_type_image");
 const inputImage = popupImage.querySelector(".popup__image");
 const inputTitle = popupImage.querySelector(".popup__image-title");
-const imageCloseButton = popupImage.querySelector(".popup__close-button");
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
@@ -32,18 +33,20 @@ function closePopup(popup) {
 }
 
 const closeByClick = (evt) => {
-  if (evt.target.classList.contains("popup")) {
-    closePopup(evt.target);
+  if (
+    evt.target.classList.contains("popup") ||
+    evt.target.classList.contains("popup__close-button")
+  ) {
+    closePopup(evt.currentTarget);
   }
 };
 
 const closePopupEscape = (evt) => {
-  if (evt.key === "Escape") {
-    popups.forEach((popup) => {
-      if (popup.classList.contains("popup_opened")) {
-        closePopup(popup);
-      }
-    });
+  {
+    if (evt.key === "Escape") {
+      const openedPopup = document.querySelector(".popup_opened");
+      closePopup(openedPopup);
+    }
   }
 };
 
@@ -54,9 +57,6 @@ const handleImagePopupOpen = (name, link) => {
   openPopup(popupImage);
 };
 
-imageCloseButton.addEventListener("click", () => {
-  closePopup(popupImage);
-});
 popupImage.addEventListener("mousedown", closeByClick);
 
 const popups = Array.from(document.querySelectorAll(".popup"));
@@ -80,7 +80,6 @@ function closeEditButtonClick() {
 
 popupProfile.addEventListener("submit", handleProfileFormSubmit);
 editButton.addEventListener("click", editButtonClick);
-editCloseButton.addEventListener("click", closeEditButtonClick);
 popupProfile.addEventListener("mousedown", closeByClick);
 
 function addButtonClick() {
@@ -115,7 +114,6 @@ function handleCardsSubmitHandler(evt) {
 
 popupCards.addEventListener("submit", handleCardsSubmitHandler);
 addButton.addEventListener("click", addButtonClick);
-cardsCloseButton.addEventListener("click", closeCardsButtonClick);
 popupCards.addEventListener("mousedown", closeByClick);
 
 const initialCards = [
