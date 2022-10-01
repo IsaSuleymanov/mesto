@@ -63,6 +63,16 @@ export default class FormValidator {
     });
   }
 
+  hideErrors() {
+    this._inputList.forEach((input) => {
+      this._inputElement = input;
+      const errorElement = this._form.querySelector(`.${input.id}-error`);
+      input.classList.remove(this._inputError);
+      errorElement.textContent = "";
+      errorElement.classList.remove(this._errorMessage);
+    });
+  }
+
   enableValidation() {
     this._setEventListeners();
   }
