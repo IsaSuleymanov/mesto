@@ -1,9 +1,28 @@
 export default class Card {
-  constructor(name, link, templateSelector, openImagePopup) {
+  constructor(
+    name,
+    link,
+    cardId,
+    likes,
+    templateSelector,
+    openImagePopup,
+    openDeletePopup,
+    isOwn,
+    handleSetLike,
+    handleDeleteLike,
+    isLiked
+  ) {
     this._link = link;
     this._title = name;
+    this._cardId = cardId;
+    this._likes = likes;
     this._templateSelector = templateSelector;
     this._openImagePopup = openImagePopup;
+    this._openDeletePopup = openDeletePopup;
+    this._isOwn = isOwn;
+    this._handleSetLike = handleSetLike;
+    this._handleDeleteLike = handleDeleteLike;
+    this._isLiked = isLiked;
   }
 
   _getTemplate() {
@@ -15,9 +34,18 @@ export default class Card {
   }
 
   _handleLikeClick() {
-    this._card
-      .querySelector(".card__like")
-      .classList.toggle("card__like_active");
+    this._likeButton.classList.toggle("card__like_active");
+    if (this._likeButton.classList.contains("card__like_active")) {
+      this._handleSetLike(this._cardId).then((res) => {
+        this._likes = res.length;
+        this._likesCount.textContent = this._likes;
+      });
+    } else {
+      this._handleDeleteLike(this._cardId).then((res) => {
+        this._likes = res.length;
+        this._likesCount.textContent = this._likes;
+      });
+    }
   }
 
   _handleDeleteClick() {
@@ -33,7 +61,7 @@ export default class Card {
     this._card
       .querySelector(".card__delete-card")
       .addEventListener("click", () => {
-        this._handleDeleteClick();
+        this._openDeletePopup(this._cardId, this._card);
       });
 
     this._cardImage.addEventListener("click", () => {
@@ -44,9 +72,18 @@ export default class Card {
   generateCard() {
     this._card = this._getTemplate();
     this._cardImage = this._card.querySelector(".card__image");
-
+    this._likesCount = this._card.querySelector(".card__likes");
+    this._likeButton = this._card.querySelector(".card__like");
+    this._deleteButton = this._card.querySelector(".card__delete-card");
+    if (this._isOwn) {
+      this._deleteButton.classList.add("card__delete-card_type_own");
+    }
+    if (this._isLiked) {
+      this._likeButton.classList.add("card__like_active");
+    }
     this._cardImage.src = this._link;
     this._cardImage.alt = this._title;
+    this._likesCount.textContent = this._likes;
     this._card.querySelector(".card__title").textContent = this._title;
 
     this._setEventListeners();

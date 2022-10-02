@@ -70,13 +70,35 @@
 				aria-label="Закрытие поп-апа"></button>
 		</div>
 	</div>
+	<div class="popup popup_type_delete-card">
+		<form class="popup__content" name="form-delete-card" novalidate>
+			<button class="popup__close-button" type="button" name="popup__close-button"
+				aria-label="Закрытие поп-апа"></button>
+			<p class="popup__title popup__title_delete-popup">Вы уверены?</p>
+			<button type="submit" class="popup__save-button">Да</button>
+		</form>
+	</div>
+	<div class="popup popup_type_avatar">
+		<form class="popup__content" name="form-profile-edit" novalidate>
+			<button class="popup__close-button" type="button" name="popup__close-button"
+				aria-label="Закрытие поп-апа"></button>
+			<p class="popup__title">Обновить аватар</p>
+			<input class="popup__input" id="username" name="username" type="url" placeholder="Ссылка на фотографию"
+				minlength="2" maxlength="100" required>
+			<span class="popup-input-error username-error"></span>
+			<button type="submit" class="popup__save-button">Сохранить</button>
+		</form>
+	</div>
 	<template id="card-template">
 		<li class="card">
 			<img class="card__image" src="#" alt>
 			<button class="card__delete-card" type="button" name="card__delete-card" aria-label="Удалить"></button>
 			<div class="card__info">
 				<h2 class="card__title"></h2>
-				<button class="card__like" type="button" name="card__like" aria-label="Лайк"></button>
+				<div>
+					<button class="card__like" type="button" name="card__like" aria-label="Лайк"></button>
+					<span class="card__likes">0</span>
+				</div>
 			</div>
 		</li>
 	</template>
