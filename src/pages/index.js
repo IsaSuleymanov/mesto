@@ -40,10 +40,10 @@ const userInformation = new UserInfo(".profile__name", ".profile__about-me");
 
 const profilePopup = new PopupWithForm(
   ".popup_type_profile",
-  function handleSubmitForm(evt, { firstInput: name, secondInput: about }) {
+  function handleSubmitForm(evt, { 0: name, 1: about }) {
     evt.preventDefault();
     userInformation.setUserInfo(name, about);
-    evt.target.disabled = true;
+    popupProfileValid.disableSubmitButton();
     profilePopup.close();
   }
 );
@@ -58,12 +58,12 @@ profileEditButton.addEventListener("click", () => {
 
 const cardsPopup = new PopupWithForm(
   ".popup_type_cards",
-  function handleSubmitForm(evt, { firstInput: name, secondInput: link }) {
+  function handleSubmitForm(evt, { 0: name, 1: link }) {
     evt.preventDefault();
     cardList.prependItem(
       createCard(name, link, "#card-template", handleCardClick)
     );
-    evt.target.disabled = true;
+    popupCardsValid.disableSubmitButton();
     cardsPopup.close();
   }
 );

@@ -63,6 +63,10 @@ export default class FormValidator {
     });
   }
 
+  disableSubmitButton() {
+    this._saveButtonElement.disabled = true;
+  }
+
   hideErrors() {
     this._inputList.forEach((input) => {
       this._inputElement = input;

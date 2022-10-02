@@ -9,10 +9,13 @@ export default class PopupWithForm extends Popup {
 
   _getInputValues() {
     this._inputList = Array.from(this._popup.querySelectorAll(".popup__input"));
-    return {
-      firstInput: this._inputList[0].value,
-      secondInput: this._inputList[1].value,
-    };
+    this._inputValuesList = {};
+    for (let i = 0; i < this._inputList.length; i++) {
+      if (this._inputList[i] !== undefined) {
+        this._inputValuesList[i] = this._inputList[i].value;
+      }
+    }
+    return this._inputValuesList;
   }
 
   setEventListeners() {
