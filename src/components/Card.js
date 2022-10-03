@@ -34,18 +34,25 @@ export default class Card {
   }
 
   _handleLikeClick() {
-    this._likeButton.classList.toggle("card__like_active");
-    if (this._likeButton.classList.contains("card__like_active")) {
-      this._handleSetLike(this._cardId).then((res) => {
-        this._likes = res.length;
-        this._likesCount.textContent = this._likes;
-      });
-    } else {
-      this._handleDeleteLike(this._cardId).then((res) => {
-        this._likes = res.length;
-        this._likesCount.textContent = this._likes;
-      });
-    }
+    if (!this._likeButton.classList.contains("card__like_active")) {
+      this._handleSetLike(this._cardId, this);
+    } else this._handleDeleteLike(this._cardId, this);
+  }
+
+  setLike(res) {
+    this._likes = res.likes.length;
+    this._likeButton.classList.add("card__like_active");
+    this._likesCount.textContent = this._likes;
+  }
+
+  removeLike(res) {
+    this._likes = res.likes.length;
+    this._likeButton.classList.remove("card__like_active");
+    this._likesCount.textContent = this._likes;
+  }
+
+  deleteCard() {
+    this._handleDeleteClick();
   }
 
   _handleDeleteClick() {
@@ -61,7 +68,7 @@ export default class Card {
     this._card
       .querySelector(".card__delete-card")
       .addEventListener("click", () => {
-        this._openDeletePopup(this._cardId, this._card);
+        this._openDeletePopup(this._cardId, this);
       });
 
     this._cardImage.addEventListener("click", () => {

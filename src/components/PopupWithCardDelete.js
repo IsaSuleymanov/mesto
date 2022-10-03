@@ -10,7 +10,10 @@ export default class PopupWithCardDelete extends Popup {
     this._cardId = cardId;
     this._card = card;
     super.open();
-    this._saveButton.textContent = "Да";
+  }
+
+  close() {
+    super.close();
   }
 
   setEventListeners() {
@@ -19,11 +22,13 @@ export default class PopupWithCardDelete extends Popup {
     this._popup
       .querySelector(".popup__save-button")
       .addEventListener("click", (evt) => {
-        this._handleSubmitForm(evt, this._cardId, this._card);
+        evt.preventDefault();
+        this._handleSubmitForm(this._cardId, this._card);
       });
   }
 
   renderLoading(isLoading) {
     if (isLoading) this._saveButton.textContent = "Удаление...";
+    else this._saveButton.textContent = "Да";
   }
 }

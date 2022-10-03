@@ -6,18 +6,21 @@ export default class Api {
     this._authorization = options.headers.authorization;
   }
 
+  _returnRes(res) {
+    if (res.ok) return res.json();
+  }
+
+  _catchError(res) {
+    console.log(err);
+  }
+
   getUser() {
     return fetch(`${this._baseUrl}/users/me `, {
       method: "GET",
       headers: this._headers,
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        this.userId = res._id;
-        return res;
-      });
+    }).then((res) => {
+      return this._returnRes(res);
+    });
   }
 
   getInitialCards() {
@@ -25,7 +28,7 @@ export default class Api {
       method: "GET",
       headers: this._headers,
     }).then((res) => {
-      return res.json();
+      return this._returnRes(res);
     });
   }
 
@@ -38,7 +41,7 @@ export default class Api {
         about: about,
       }),
     }).then((res) => {
-      return res.json();
+      return this._returnRes(res);
     });
   }
 
@@ -51,7 +54,7 @@ export default class Api {
         link: link,
       }),
     }).then((res) => {
-      return res.json();
+      return this._returnRes(res);
     });
   }
 
@@ -59,6 +62,8 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
+    }).catch((err) => {
+      this._catchError(err);
     });
   }
 
@@ -66,26 +71,18 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "PUT",
       headers: this._headers,
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        return res.likes;
-      });
+    }).then((res) => {
+      return this._returnRes(res);
+    });
   }
 
   deleteLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        return res.likes;
-      });
+    }).then((res) => {
+      return this._returnRes(res);
+    });
   }
 
   setAvatar(avatar) {
@@ -95,6 +92,8 @@ export default class Api {
       body: JSON.stringify({
         avatar: avatar,
       }),
+    }).catch((err) => {
+      this._catchError(err);
     });
   }
 }
