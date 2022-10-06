@@ -8,10 +8,8 @@ export default class Api {
 
   _returnRes(res) {
     if (res.ok) return res.json();
-  }
 
-  _catchError(res) {
-    console.log(err);
+    return Promise.reject(`Ошибка: ${res.status}`);
   }
 
   getUser() {
@@ -62,8 +60,8 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
-    }).catch((err) => {
-      this._catchError(err);
+    }).then((res) => {
+      return this._returnRes(res);
     });
   }
 
@@ -92,8 +90,8 @@ export default class Api {
       body: JSON.stringify({
         avatar: avatar,
       }),
-    }).catch((err) => {
-      this._catchError(err);
+    }).then((res) => {
+      return this._returnRes(res);
     });
   }
 }

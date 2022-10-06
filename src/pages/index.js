@@ -5,6 +5,7 @@ import {
   userAbout,
   addCardButton,
   constants,
+  profileAvatar,
 } from "../utils/constants.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
@@ -82,16 +83,22 @@ const userInformation = new UserInfo(
 );
 
 const cardList = new Section((item) => {
+  let isLiked = false;
+  item.likes.forEach((user) => {
+    if (user._id === userInformation.getUserId()) {
+      isLiked = true;
+    }
+  });
   cardList.appendItem(
     createCard(
       item.name,
       item.link,
       item._id,
-      item.likes,
+      item.likes.length,
       "#card-template",
       handleCardClick,
       handleDeleteClick,
-      true,
+      userInformation.getUserId() === item.owner._id ? true : false,
       handleSetLike,
       handleDeleteLike,
       isLiked
@@ -116,29 +123,7 @@ Promise.all([api.getUser(), api.getInitialCards()])
     userInformation.setUserAvatar(info.avatar);
     userInformation.setUserId(info._id);
 
-    initialCards.forEach((item) => {
-      let isLiked = false;
-      item.likes.forEach((user) => {
-        if (user._id === userInformation.getUserId()) {
-          isLiked = true;
-        }
-      });
-      cardList.appendItem(
-        createCard(
-          item.name,
-          item.link,
-          item._id,
-          item.likes.length,
-          "#card-template",
-          handleCardClick,
-          handleDeleteClick,
-          userInformation.getUserId() === item.owner._id ? true : false,
-          handleSetLike,
-          handleDeleteLike,
-          isLiked
-        )
-      );
-    });
+    cardList.renderItems(initialCards);
   })
   .catch((err) => {
     console.log(err);
@@ -152,14 +137,14 @@ const profilePopup = new PopupWithForm(
       .editUserInfo(name, about)
       .then((result) => {
         userInformation.setUserInfo(result.name, result.about);
+        profilePopup.close();
+        popupProfileValid.disableSubmitButton();
       })
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
         profilePopup.renderLoading(false);
-        profilePopup.close();
-        popupProfileValid.disableSubmitButton();
       });
   }
 );
@@ -194,14 +179,14 @@ const cardsPopup = new PopupWithForm(
             false
           )
         );
+        cardsPopup.close();
+        popupCardsValid.disableSubmitButton();
       })
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
         cardsPopup.renderLoading(false);
-        cardsPopup.close();
-        popupCardsValid.disableSubmitButton();
       });
   }
 );
@@ -235,15 +220,23 @@ deletePopup.setEventListeners();
 const avatarPopup = new PopupWithForm(
   ".popup_type_avatar",
   function handleSetAvatar({ url: avatar }) {
-    api.setAvatar(avatar);
-    popupAvatarValid.disableSubmitButton();
-    avatarPopup.close();
-    profileAvatar.src = avatar;
+    avatarPopup.renderLoading(true);
+    api
+      .setAvatar(avatar)
+      .then((res) => {
+        popupAvatarValid.disableSubmitButton();
+        avatarPopup.close();
+        profileAvatar.src = avatar;
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => avatarPopup.renderLoading(false));
   }
 );
 avatarPopup.setEventListeners();
-const profileAvatar = document.querySelector(".profile__avatar");
 profileAvatar.addEventListener("click", () => {
+  popupAvatarValid.hideErrors();
   avatarPopup.open();
 });
 

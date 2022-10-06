@@ -4,7 +4,7 @@ export const profileEditButton = document.querySelector(
 export const userName = document.querySelector("#username");
 export const userAbout = document.querySelector("#about");
 export const userAvatar = document.querySelector(".profile__avatar");
-
+export const profileAvatar = document.querySelector(".profile__avatar");
 export const addCardButton = document.querySelector(".profile__add-button");
 export const initialCards = [
   {
